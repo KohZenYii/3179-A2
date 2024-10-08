@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educational Export Income by State</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      text-align: center;
+    }
+    .chart {
+      margin-top: 20px;
+    }
+    .description {
+      margin-top: 20px;
+      max-width: 800px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Educational Export Income by State (2020-2023)</h1>
+  <div id="chart" class="chart"></div>
+
+  <!-- Add your paragraph or context here -->
+
+
+  <script type="text/javascript">
+    var educationIncomeSpec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "data": {
+        "url": "https://raw.githubusercontent.com/KohZenYii/3179/refs/heads/main/data/education-export-income.csv"
+      },
+      "title": {
+        "text": "Educational Export Income by State (2020-2023)",
+        "fontSize": 24
+      },
+      "transform": [
+        {
+          "fold": ["2020", "2021", "2022", "2023"],
+          "as": ["Year", "Income"]
+        },
+        {
+          "calculate": "toNumber(datum.Income)",
+          "as": "Income_clean"
+        },
+        {
+          "filter": "datum.State != null && datum.State != ''"
+        }
+      ],
+      "width": 800,
+      "height": 500,
+      "mark": "area",
+      "selection": {
+        "stateSelection": {
+          "type": "multi",
+          "fields": ["State"],
+          "bind": "legend"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Year",
+          "axis": {
+            "labelFontSize": 14,
+            "titleFontSize": 16
+          }
+        },
+        "y": {
+          "field": "Income_clean",
+          "type": "quantitative",
+          "title": "Income (in million AUD)",
+          "axis": {
+            "labelFontSize": 14,
+            "titleFontSize": 16
+          }
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "title": "States",
+          "legend": {
+            "labelFontSize": 14,
+            "titleFontSize": 16
+          }
+        },
+        "opacity": {
+          "condition": {
+            "selection": "stateSelection",
+            "value": 1
+          },
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "nominal", "title": "Year"},
+          {"field": "Income_clean", "type": "quantitative", "title": "Income (in million AUD)"}
+        ]
+      }
+    };
+
+    vegaEmbed('#chart', educationIncomeSpec).then(function(result) {
+      console.log("Educational export income chart loaded");
+    }).catch(console.error);
+
+  </script>
+
+</body>
+</html>
