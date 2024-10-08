@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exports by State (2017-2019)</title>
+  <title>Exports by State with Year Filter</title>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
@@ -22,32 +22,29 @@
     .chart {
       margin-top: 20px;
     }
-    .description {
-      margin-top: 20px;
-      max-width: 800px;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
-
-  <h1>Exports by State (2017-2019)</h1>
+  <h1>Exports by State with Year Filter</h1>
   <div id="chart" class="chart"></div>
-
-  <!-- Add your paragraph or context here -->
-
   <script type="text/javascript">
-    var mapSpec = {
+    var spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
       "data": {
-        "url": "https://raw.githubusercontent.com/KohZenYii/3179/refs/heads/main/data/States%20Exports.csv"
+        "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/data/States%20Exports.csv"
       },
-      "width": 850,
-      "height": 550,
-      "title": {
-        "text": "Australia's Exports of Goods and Services by State (2017-2019)",
-        "fontSize": 22
-      },
+      "width": 600,
+      "height": 400,
+      "params": [{
+        "name": "Year_selection",
+        "value": 2017,
+        "bind": {
+          "input": "select",
+          "options": [2017, 2018, 2019],
+          "labels": ["2017", "2018", "2019"],
+          "name": "Select Year: "
+        }
+      }],
       "transform": [
         {
           "fold": ["2017", "2018", "2019"],
@@ -56,68 +53,45 @@
         {
           "calculate": "toNumber(replace(datum.Exports, ',', ''))",
           "as": "Exports_clean"
+        },
+        {
+          "filter": "datum.Year == Year_selection"
         }
       ],
-      "selection": {
-        "yearFilter": {
-          "type": "multi",
-          "fields": ["Year"],
-          "bind": "legend"
-        }
-      },
       "mark": "bar",
       "encoding": {
         "x": {
           "field": "State",
           "type": "nominal",
-          "title": "State",
           "axis": {
-            "labelAngle": 0,
-            "labelFontSize": 12,
-            "titleFontSize": 14
+            "labelAngle": -45,
+            "labelLimit": 150
           }
         },
         "y": {
           "field": "Exports_clean",
           "type": "quantitative",
-          "title": "Exports (in million AUD)",
-          "axis": {
-            "labelFontSize": 12,
-            "titleFontSize": 14
-          }
+          "title": "Exports (in million AUD)"
         },
         "color": {
-          "field": "Year",
+          "field": "State",
           "type": "nominal",
-          "title": "Year",
+          "title": "State",
           "scale": {
-            "scheme": "category10"
-          },
-          "legend": {
-            "labelFontSize": 13,
-            "titleFontSize": 14
+            "scheme": "category10"  // You can change this to other color schemes (e.g., "blues", "reds", etc.)
           }
         },
         "tooltip": [
-          {"field": "State", "type": "nominal", "title": "State"},
-          {"field": "Year", "type": "nominal", "title": "Year"},
-          {"field": "Exports_clean", "type": "quantitative", "title": "Exports (in million AUD)"}
-        ],
-        "opacity": {
-          "condition": {
-            "selection": "yearFilter", 
-            "value": 1
-          },
-          "value": 0.2
-        }
+          {"field": "State", "type": "nominal"},
+          {"field": "Exports_clean", "type": "quantitative", "title": "Exports (million AUD)"}
+        ]
+      },
+      "title": {
+        "text": "Australia's Exports by State",
+        "fontSize": 20
       }
     };
-
-    vegaEmbed('#chart', mapSpec).then(function(result) {
-      console.log("Exports chart loaded");
-    }).catch(console.error);
-
+    vegaEmbed('#chart', spec);
   </script>
-
 </body>
 </html>
