@@ -39,55 +39,70 @@
 
   <script type="text/javascript">
     var tourismPieSpec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "description": "Tourism Data for 2024 by State (Pie Chart) with annotations and tooltips.",
-      "data": {
-        "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/data/tourism.csv",
-        "format": {
-          "type": "csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Tourism Data for 2024 by State (Pie Chart) with annotations and tooltips.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/data/tourism.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "title": {
+    "text": "Number of Tourism by State",
+    "fontSize": 24
+  },
+  "width": 900,
+  "height": 600,
+  "encoding": {
+    "theta": {"field": "2024", "type": "quantitative", "stack": true},
+    "color": {
+      "field": "State",
+      "type": "nominal",
+      "title": "State",
+      "legend": {
+        "labelFontSize": 13,
+        "titleFontSize": 18
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "arc", "outerRadius": 220},
+      "selection": {
+        "stateSelection": {
+          "type": "multi",
+          "fields": ["State"],
+          "bind": "legend"
         }
       },
-      "title": {
-        "text": "Number of tourism by state",
-        "fontSize": 24
-      },
-      "width": 900,
-      "height": 600,
       "encoding": {
-        "theta": {"field": "2024", "type": "quantitative", "stack": true},
-        "color": {
-          "field": "State",
-          "type": "nominal",
-          "title": "State",
-          "legend": {
-            "labelFontSize": 13,
-            "titleFontSize": 18
-          }
-        }
-      },
-      "layer": [
-        {
-          "mark": {"type": "arc", "outerRadius": 220},
-          "encoding": {
-            "tooltip": [
-              {"field": "State", "type": "nominal", "title": "State"},
-              {"field": "2024", "type": "quantitative", "title": "Tourists"}
-            ]
-          }
+        "opacity": {
+          "condition": {"selection": "stateSelection", "value": 1},
+          "value": 0.3
         },
-        {
-          "mark": {
-            "type": "text",
-            "radius": 250,
-            "fontSize": 16,
-            "fontWeight": "bold"
-          },
-          "encoding": {
-            "text": {"field": "2024", "type": "quantitative"}
-          }
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "2024", "type": "quantitative", "title": "Tourists"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "radius": 250,
+        "fontSize": 16,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"field": "2024", "type": "quantitative"},
+        "opacity": {
+          "condition": {"selection": "stateSelection", "value": 1},
+          "value": 0.3
         }
-      ]
-    };
+      }
+    }
+  ]
+};
 
     vegaEmbed('#chart', tourismPieSpec).then(function(result) {
       console.log("Tourism pie chart loaded");

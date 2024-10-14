@@ -39,79 +39,87 @@
 
   <script type="text/javascript">
     var educationIncomeSpec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "data": {
-        "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/data/education-export-income.csv"
-      },
-      "title": {
-        "text": "Educational Income by State",
-        "fontSize": 24
-      },
-      "transform": [
-        {
-          "fold": ["2020", "2021", "2022", "2023"],
-          "as": ["Year", "Income"]
-        },
-        {
-          "calculate": "toNumber(datum.Income)",
-          "as": "Income_clean"
-        },
-        {
-          "filter": "datum.State != null && datum.State != ''"
-        }
-      ],
-      "width": 800,
-      "height": 500,
-      "mark": "area",
-      "selection": {
-        "stateSelection": {
-          "type": "multi",
-          "fields": ["State"],
-          "bind": "legend"
-        }
-      },
-      "encoding": {
-        "x": {
-          "field": "Year",
-          "type": "nominal",
-          "title": "Year",
-          "axis": {
-            "labelFontSize": 14,
-            "titleFontSize": 16
-          }
-        },
-        "y": {
-          "field": "Income_clean",
-          "type": "quantitative",
-          "title": "Income (in million AUD)",
-          "axis": {
-            "labelFontSize": 14,
-            "titleFontSize": 16
-          }
-        },
-        "color": {
-          "field": "State",
-          "type": "nominal",
-          "title": "States",
-          "legend": {
-            "labelFontSize": 14,
-            "titleFontSize": 16
-          }
-        },
-        "opacity": {
-          "condition": {
-            "selection": "stateSelection",
-            "value": 1
-          },
-          "value": 0.2
-        },
-        "tooltip": [
-          {"field": "State", "type": "nominal", "title": "State"},
-          {"field": "Year", "type": "nominal", "title": "Year"},
-          {"field": "Income_clean", "type": "quantitative", "title": "Income (in million AUD)"}
-        ]
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/data/education-export-income.csv"
+  },
+  "title": {
+    "text": "Educational Income by State",
+    "fontSize": 24
+  },
+  "transform": [
+    {
+      "fold": ["2020", "2021", "2022", "2023"],
+      "as": ["Year", "Income"]
+    },
+    {
+      "calculate": "toNumber(datum.Income)",
+      "as": "Income_clean"
+    },
+    {
+      "filter": "datum.State != null && datum.State != ''"
+    }
+  ],
+  "width": 800,
+  "height": 500,
+  "mark": {
+    "type": "line",
+    "strokeWidth": 3,  // Increase the line thickness
+    "point": {         // Add points to each year
+      "filled": true,
+      "size": 100      // Control the size of the dots
+    }
+  },
+  "selection": {
+    "stateSelection": {
+      "type": "multi",
+      "fields": ["State"],
+      "bind": "legend"
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "nominal",
+      "title": "Year",
+      "axis": {
+        "labelFontSize": 14,
+        "titleFontSize": 16
       }
-    };
+    },
+    "y": {
+      "field": "Income_clean",
+      "type": "quantitative",
+      "title": "Income (in million AUD)",
+      "axis": {
+        "labelFontSize": 14,
+        "titleFontSize": 16
+      }
+    },
+    "color": {
+      "field": "State",
+      "type": "nominal",
+      "title": "States",
+      "legend": {
+        "labelFontSize": 12,
+        "titleFontSize": 16
+      }
+    },
+    "opacity": {
+      "condition": {
+        "selection": "stateSelection",
+        "value": 1
+      },
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "State", "type": "nominal", "title": "State"},
+      {"field": "Year", "type": "nominal", "title": "Year"},
+      {"field": "Income_clean", "type": "quantitative", "title": "Income (in million AUD)"}
+    ]
+  }
+}
+;
 
     vegaEmbed('#chart', educationIncomeSpec).then(function(result) {
       console.log("Educational export income chart loaded");

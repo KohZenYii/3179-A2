@@ -37,18 +37,35 @@
 
   <script type="text/javascript">
     var mapSpec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "width": 900,
-      "height": 600,
-      "title": {
-        "text": "Gross Domestic Product (GDP) by State in Australia",
-        "fontSize": 22
-      },
-      "projection": {
-        "type": "equalEarth"
-      },
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 600,
+  "title": {
+    "text": "Gross Domestic Product (GDP) by State in Australia",
+    "fontSize": 22
+  },
+  "projection": {
+    "type": "equirectangular"
+  },
+  "layer": [
+    {
       "data": {
-        "url": "https://raw.githubusercontent.com/KohZenYii/3179/refs/heads/main/js/states.topojson",
+        "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/js/ne_110m_ocean.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_ocean"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ace5ee",
+        "stroke": "white",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/js/states.topojson",
         "format": {
           "type": "topojson",
           "feature": "states"
@@ -80,11 +97,11 @@
               "field": "GDP_in_millions_clean",
               "type": "quantitative",
               "scale": {
-                "scheme": "reds"
+                "scheme": "greens"
               },
               "legend": {
-                "labelFontSize": 13,   
-                "titleFontSize": 14    
+                "labelFontSize": 13,
+                "titleFontSize": 14
               },
               "title": "GDP (in millions)"
             },
@@ -106,12 +123,13 @@
           "data": {
             "values": [
               {"state": "New South Wales", "lat": -30.8688, "lon": 147.2093},
-              {"state": "Victoria", "lat": -36.136, "lon": 143.9631},
+              {"state": "Victoria", "lat": -36.236, "lon": 144.4631},
               {"state": "Queensland", "lat": -23.4698, "lon": 143.0251},
               {"state": "South Australia", "lat": -27.9285, "lon": 134.6007},
               {"state": "Western Australia", "lat": -25.9505, "lon": 120.8605},
               {"state": "Tasmania", "lat": -41.8821, "lon": 147.3272},
-              {"state": "Northern Territory", "lat": -18.4634, "lon": 133.8456}
+              {"state": "Northern Territory", "lat": -18.4634, "lon": 133.8456},
+              {"state": "Australian Capital Territory", "lat": -35.9634, "lon": 157.3456}
             ]
           },
           "transform": [
@@ -132,12 +150,12 @@
           ],
           "mark": {
             "type": "text",
-            "fontSize": 15,
+            "fontSize": 13,
             "color": "black",
             "align": "center",
             "baseline": "middle",
             "lineBreak": "\n",
-            "fontweight": "bold"
+            "fontWeight": "bold"
           },
           "encoding": {
             "longitude": {"field": "lon", "type": "quantitative"},
@@ -146,7 +164,10 @@
           }
         }
       ]
-    };
+    }
+  ]
+}
+;
 
     vegaEmbed('#chart', mapSpec).then(function(result) {
       console.log("GDP chart loaded");

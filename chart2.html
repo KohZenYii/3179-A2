@@ -31,7 +31,7 @@
     var spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
       "data": {
-        "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/data/States%20Exports.csv"
+        "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/data/Exports%20by%20category%20.csv"
       },
       "width": 600,
       "height": 400,
@@ -47,17 +47,21 @@
       }],
       "transform": [
         {
-          "fold": ["2017", "2018", "2019"],
-          "as": ["Year", "Exports"]
-        },
-        {
-          "calculate": "toNumber(replace(datum.Exports, ',', ''))",
-          "as": "Exports_clean"
-        },
-        {
           "filter": "datum.Year == Year_selection"
+        },
+        {
+          "filter": {
+            "selection": "export_type_select"
+          }
         }
       ],
+      "selection": {
+        "export_type_select": {
+          "type": "multi",
+          "fields": ["Export Type"],
+          "bind": "legend"
+        }
+      },
       "mark": "bar",
       "encoding": {
         "x": {
@@ -65,29 +69,31 @@
           "type": "nominal",
           "axis": {
             "labelAngle": -45,
-            "labelLimit": 150
+            "labelLimit": 150, 
+            "labelFontSize": 12
           }
         },
         "y": {
-          "field": "Exports_clean",
+          "aggregate": "sum",
+          "field": "Exports (in million AUD)",
           "type": "quantitative",
           "title": "Exports (in million AUD)"
         },
         "color": {
-          "field": "State",
+          "field": "Export Type",
           "type": "nominal",
-          "title": "State",
+          "title": "Export Type",
           "scale": {
-            "scheme": "category10"  // You can change this to other color schemes (e.g., "blues", "reds", etc.)
+            "scheme": "category10"
           }
         },
         "tooltip": [
           {"field": "State", "type": "nominal"},
-          {"field": "Exports_clean", "type": "quantitative", "title": "Exports (million AUD)"}
+          {"field": "Exports (in million AUD)", "type": "quantitative", "title": "Exports (million AUD)"}
         ]
       },
       "title": {
-        "text": "Australia's Exports by State",
+        "text": "Australia's Exports by State and Category",
         "fontSize": 20
       }
     };
