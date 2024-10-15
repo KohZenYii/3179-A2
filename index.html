@@ -10,72 +10,122 @@
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
-    padding: 40px;
+    padding: 32px; /* Reduce padding slightly */
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:white; /* Change the background color to white */
     color: white;
     line-height: 1.6;
+    background-color: #f5f5e9; /* Light beige color similar to your third image */
+
 }
   
 h1 {
     text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 30px;
+    font-size: 2em; /* Reduce the font size slightly */
+    margin-bottom: 24px; /* Reduce margin */
     color: #1a1a1a;
-    border-bottom: 3px solid #2c3e50;
-    padding-bottom: 10px;
+    border-bottom: 2.5px solid #2c3e50; /* Reduce border thickness */
+    padding-bottom: 8px; /* Reduce padding */
 }
   
 h2 {
-    font-size: 1.8em;
+    font-size: 1.8em; /* Reduce the font size */
     color: #2c3e50;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    margin-top: 32px; /* Adjust margins */
+    margin-bottom: 16px;
     text-align: center;
 }
   
 iframe {
     width: 100%;
-    max-width: 1200px; /* Set iframe width to match the description box */
-    height: 800px;
+    max-width: 1000px; /* Reduce iframe width */
+    height: 720px; /* Adjust iframe height */
     border: none;
-    margin-bottom: 30px;
+    margin-bottom: 8px; /* Reduce margin */
     border-radius: 8px;
-    background-color:white;
+    background-color: white;
 }
   
 .section-header {
     width: 100%;
-    max-width: 950px; /* Set description box width to match iframe */
-    margin-top: 30px;
+    max-width: 900px; /* Adjust description box width */
+    margin-top: 24px; /* Adjust margins */
 }
   
 .description {
-    background-color: #97d7e9e5;
-    padding: 20px 30px;
+    background-color: #d3d3d3;
+    padding: 16px 24px; /* Reduce padding */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 1200px; /* Set description box width to match iframe */
+    margin-bottom: 16px; /* Adjust bottom margin */
+    width: 75%; /* Adjust to maintain a good size ratio */
+    max-width: 1000px; /* Reduce max width */
+    text-align: justify;
 }
-  
+
 .description p {
     margin: 0;
-    font-size: 1.1em;
+    font-size: 1.5em; /* Reduce paragraph font size */
     color: #444;
-    line-height: 1.8;
+    line-height: 1.7; /* Slightly reduce line height */
 }
-  
+
+.title-box {
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    color: #1a1a1a; /* Dark text color for readability */
+    font-size: 2.3em;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: 1px solid #2c3e50; /* Darker color for the line */
+    margin-top: 40px; /* Add space above the line */
+    margin-bottom: 20px; /* Add space below the line */
+    width: 100%;
+}
+.sources ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.sources {
+    text-align: center;
+    font-size: 1.2em;
+    color: #444; /* Text color for sources */
+    margin-bottom: 40px; /* Add space at the bottom of the page */
+}
+
+.sources a {
+    color: #1e6cba; /* Link color */
+    text-decoration: none;
+}
+
+.sources a:hover {
+    text-decoration: underline; /* Underline the links on hover */
+}
 
 
   </style>
 </head>
 <body>
 
-  <h1>Data Visualisation Homework</h1>
+  <div class="title-box">
+    <h1>ECONOMIC OF AUSTRALIA</h1>
+  </div>
+  
+
+ <!-- introduction-->
+  <div class="section-header">
+    <h2>Introduction</h2>
+  </div>
+  <div class="description">
+    <p>Australia's economic landscape is shaped by the diverse strengths and resources of its states and territories. From bustling urban centers to resource-rich regions, each state contributes uniquely to the nation's overall economic performance. We begin by examining the Gross Domestic Product (GDP) of each state, providing an initial snapshot of their economic standings.</p>
+  </div>
+
 
   <!-- Embed Chart 1 (GDP by Australian States) -->
   <!-- <h2>GDP by Australian States</h2> -->
@@ -83,61 +133,79 @@ iframe {
 
   <!-- Description Section -->
   <div class="section-header">
-    <h2>Western Australia and Queensland: Resource-Driven Powerhouses</h2>
+    <h2>New South Wales and Victoria:  Economic Powerhouses in Australia</h2>
   </div>
   <div class="description">
-    <p>The GDP data reveals that Western Australia and Queensland are among the top economic performers, with GDPs of 445,348 million and 503,351 million respectively. This economic strength appears closely tied to their robust export performance, as shown in the 2017-2019 export data where Western Australia significantly outperforms other states. These regions' economies are primarily driven by their rich natural resources, with mining and energy exports playing a crucial role in their economic success.</p>
+    <p>The GDP data reveals that New South Wales, Victoria are among the top economic performers, with GDPs of 777,299 million and 568,866 million respectively, followed by Queensland with GDPs of 503,351 million. These states dominate the country's economy, showing significantly higher GDPs compared to other regions.</p>
   </div>
 
 
   <!-- Embed Chart 2 (Exports by State) -->
   <!-- <h2>Exports by State (2017-2019)</h2> -->
-  <iframe src="chart2.html" title="Australia's Exports by State and Category"></iframe>
+  <iframe src="chart3.html" title="Australia's Exports by State and Category"></iframe>
 
   <div class="section-header">
     <h2>Victoria and New South Wales: Education and Service Sectors</h2>
   </div>
   <div class="description">
-    <p>Despite having a lower GDP than Western Australia, Victoria shows substantial educational export (income), as evidenced in the 2020-2023 educational export data. New South Wales also demonstrates strong performance in educational exports, suggesting that these states have successfully diversified their economies beyond traditional industries.</p>
+    <p>The educational income data reveals a clear dominance of New South Wales and Victoria  with these states generating significantly higher income from education exports compared to other regions.This suggests that these states have robust educational systems that contribute significantly to their economies, likely due to their large number of higher education institutions and attractiveness to both domestic and international students. All states experienced a dip in 2021, but recovered by 2023, indicating resilience in their education sectors.</p>
   </div>
 
 
   <!-- Embed Chart 3 (Educational Export Income by State) -->
   <!-- <h2>Educational Export Income by State (2020-2023)</h2> -->
-  <iframe src="chart3.html" title="education"></iframe>
+  <iframe src="chart4.html" title="education"></iframe>
 
   <div class="section-header">
     <h2>Tourism's Impact on State Economies</h2>
   </div>
   <div class="description">
-    <p>The 2024 tourism data reveals interesting patterns, with New South Wales receiving the highest number of visitors (234,450), followed by Queensland (171,360) and Victoria (161,390). This tourism strength provides an additional economic pillar for these states, contributing to their overall economic resilience and diversification. The tourism sector appears to complement other economic activities, particularly in states that may not have the same level of resource exports as Western Australia.</p>
+    <p>The 2024 tourism data reveals interesting patterns, with New South Wales receiving the highest number of visitors (234,450), followed by Queensland (171,360) and Victoria (161,390). New South Wales leads by a significant margin, likely due to the global popularity of Sydney and its cultural landmarks. Queensland follows closely, known for its natural wonders like the Great Barrier Reef, while Victoria's strong performance can be attributed to Melbourne's status as a cultural and sporting hub.</p>
   </div>
 
   <!-- Embed Chart 4 (Tourism Data for 2024) -->
   <!-- <h2>Tourism Data for 2024 by State</h2> -->
-  <iframe src="chart4.html" title="Number of tourist by state "></iframe>
+  <iframe src="chart2.html" title="Number of tourist by state "></iframe>
   <div class="section-header">
-    <h2>The Challenge of Smaller States</h2>
+    <h2>Western Australia’s Surprising Dominance in Exports</h2>
   </div>
   <div class="description">
-    <p>The data highlights the economic challenges faced by smaller states and territories. Tasmania, the Northern Territory, and the Australian Capital Territory consistently show lower numbers across all metrics - GDP, exports, educational income, and tourism. This suggests that these regions may need targeted strategies to boost their economic performance, perhaps by identifying and developing niche sectors that can compete effectively with their larger counterparts.</p>
+    <p>While New South Wales, Victoria, and Queensland are known to dominate in several economic sectors, Western Australia's export performance is surprisingly high, outpacing all other states by a significant margin. This is primarily driven by its exports of minerals and fuels, as shown in the chart. Western Australia’s resource-rich economy, particularly in mining, positions it as a key player in Australia’s overall export landscape.</p>
   </div>
 <!-- Embed Chart 5 (Tourism Data for 2024) -->
   <iframe src="chart5.html" title="Gross State Product (GSP) per Capita by State in Australia"></iframe>
   <div class="section-header">
-    <h2>Something</h2>
+    <h2>Unveiling Economic Efficiency: GSP per Capita Reveals Other Side of the Coin</h2>
   </div>
   <div class="description">
-    <p>The data highlights the economic challenges faced by smaller states and territories. Tasmania, the Northern Territory, and the Australian Capital Territory consistently show lower numbers across all metrics - GDP, exports, educational income, and tourism. This suggests that these regions may need targeted strategies to boost their economic performance, perhaps by identifying and developing niche sectors that can compete effectively with their larger counterparts.</p>
+    <p>The normalization of the economic data by GSP per capita reveals a different picture of Australia’s state economies. While initial GDP figures highlighted the dominance of populous states like New South Wales and Victoria, normalized data shows that Western Australia dominates in economic output per person, which is justifiable by its extraordinary exports performance. Interestingly, the Northern Territory and the Australian Capital Territory rank second and third despite low economic outputs.</p>
   </div>
 <!-- Embed Chart 6 (Tourism Data for 2024) -->
   <iframe src="chart6.html" title="Population of Australian States"></iframe>
   <div class="section-header">
-    <h2>Something 2</h2>
+    <h2> Low Population, High Impact: Explaining ACT and NT's GSP per Capita</h2>
   </div>
   <div class="description">
-    <p>The data highlights the economic challenges faced by smaller states and territories. Tasmania, the Northern Territory, and the Australian Capital Territory consistently show lower numbers across all metrics - GDP, exports, educational income, and tourism. This suggests that these regions may need targeted strategies to boost their economic performance, perhaps by identifying and developing niche sectors that can compete effectively with their larger counterparts.</p>
+    <p>The Australian Capital Territory (ACT) and the Northern Territory (NT) rank second and third in GSP per capita, largely due to their relatively low populations. As shown in the population data, both territories have much smaller populations compared to the larger states, like New South Wales and Victoria. This explains why they are relatively higher GSP per capita despite having moderate economic outputs. </p>
   </div>
+
+
+  <hr> <!-- Horizontal line -->
+
+  <div class="sources">
+    <p>Visualisation by: Koh Zen Yii (33555478)</p>
+    <h2>Sources</h2>
+    <ul>
+        <li>Source: <a href="https://www.ceicdata.com/en/australia/sna08-gross-domestic-product-and-gross-domestic-product-per-capita-by-state/gdp-victoria" target="_blank">GDP Victoria</a>, Author: CEIC data, Date: 2023</li>
+        <li>Source: <a href="https://www.education.gov.au/international-education-data-and-research/education-export-income-financial-year" target="_blank">Education Export Income</a>, Author: Australian Government Department of Education, Date: 7 May 2024</li>
+        <li>Source: <a href="https://www.abs.gov.au/statistics/industry/tourism-and-transport/overseas-arrivals-and-departures-australia/latest-release#visitor-arrivals-state-and-territory" target="_blank">Tourism Arrivals</a>, Author: Australian Bureau of Statistics, Date: 15 October 2024</li>
+        <li>Source: <a href="https://www.dfat.gov.au/sites/default/files/australia-state-territory-2018-19.pdf" target="_blank">State and Territory Exports</a>, Author: Australian Government Department of Foreign Affairs and Trade, Date: 20 May 2020</li>
+        <li>Source: <a href="https://en.wikipedia.org/wiki/List_of_Australian_states_and_territories_by_gross_state_product" target="_blank">GSP by Australian States</a>, Author: Wikipedia, Date: 24 August 2024</li>
+        <li>Source: <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/latest-release" target="_blank">Population by State</a>, Author: Australian Bureau of Statistics, Date: 19 September 2024</li>
+        <li>Source Code: <a href="https://github.com/your-repo-link" target="_blank">GitHub</a> (14/10/2024)</li>
+    </ul>
+</div>
+
   
 </body>
 </html>

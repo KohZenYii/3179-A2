@@ -18,6 +18,8 @@
     }
     h1 {
       text-align: center;
+      font-size: 1.5em;
+      border-bottom: 3px solid #2c3e50;
     }
     .chart {
       margin-top: 20px;
@@ -31,15 +33,15 @@
 </head>
 <body>
 
-  <h1>GDP by Australian States</h1>
+  <h1>Population by States</h1>
   <div id="chart" class="chart"></div>
 
 
   <script type="text/javascript">
     var mapSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
-  "height": 400,
+  "width": 650,
+  "height": 530,
 
   "data": {
     "url": "https://raw.githubusercontent.com/KohZenYii/3179-A2/refs/heads/main/data/Aus%20Population.csv"

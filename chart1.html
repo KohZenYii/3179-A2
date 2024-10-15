@@ -18,6 +18,8 @@
     }
     h1 {
       text-align: center;
+      font-size: 1.5em;
+      border-bottom: 3px solid #2c3e50;
     }
     .chart {
       margin-top: 20px;
@@ -38,8 +40,8 @@
   <script type="text/javascript">
     var mapSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 900,
-  "height": 600,
+  "width": 800,
+  "height": 550,
 
   "projection": {
     "type": "equirectangular"
@@ -94,7 +96,7 @@
               "field": "GDP_in_millions_clean",
               "type": "quantitative",
               "scale": {
-                "scheme": "greens"
+                "scheme": "oranges"
               },
               "legend": {
                 "labelFontSize": 13,
