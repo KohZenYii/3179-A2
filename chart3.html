@@ -60,62 +60,103 @@
   ],
   "width": 700,
   "height": 450,
-  "mark": {
-    "type": "line",
-    "strokeWidth": 3,  // Increase the line thickness
-    "point": {         // Add points to each year
-      "filled": true,
-      "size": 100      // Control the size of the dots
-    }
-  },
-  "selection": {
-    "stateSelection": {
-      "type": "multi",
-      "fields": ["State"],
-      "bind": "legend"
-    }
-  },
-  "encoding": {
-    "x": {
-      "field": "Year",
-      "type": "nominal",
-      "title": "Year",
-      "axis": {
-        "labelFontSize": 14,
-        "titleFontSize": 16
-      }
-    },
-    "y": {
-      "field": "Income_clean",
-      "type": "quantitative",
-      "title": "Income (in million AUD)",
-      "axis": {
-        "labelFontSize": 14,
-        "titleFontSize": 16
-      }
-    },
-    "color": {
-      "field": "State",
-      "type": "nominal",
-      "title": "States",
-      "legend": {
-        "labelFontSize": 12,
-        "titleFontSize": 16
-      }
-    },
-    "opacity": {
-      "condition": {
-        "selection": "stateSelection",
-        "value": 1
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "size": 100
+        }
       },
-      "value": 0.2
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Year",
+          "axis": {
+            "labelFontSize": 14,
+            "titleFontSize": 16
+          }
+        },
+        "y": {
+          "field": "Income_clean",
+          "type": "quantitative",
+          "title": "Income (in million AUD)",
+          "axis": {
+            "labelFontSize": 14,
+            "titleFontSize": 16
+          }
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "title": "States",
+          "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 16
+          }
+        },
+        "opacity": {
+          "condition": {
+            "selection": "stateSelection",
+            "value": 1
+          },
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "nominal", "title": "Year"},
+          {"field": "Income_clean", "type": "quantitative", "title": "Income (in million AUD)"}
+        ]
+      }
     },
-    "tooltip": [
-      {"field": "State", "type": "nominal", "title": "State"},
-      {"field": "Year", "type": "nominal", "title": "Year"},
-      {"field": "Income_clean", "type": "quantitative", "title": "Income (in million AUD)"}
-    ]
-  }
+    {
+      // Layer for the vertical red line at year 2022
+      "mark": {
+        "type": "rule",
+        "color": "red",
+        "strokeWidth": 2
+      },      "selection": {
+        "stateSelection": {
+          "type": "multi",
+          "fields": ["State"],
+          "bind": "legend"
+        }
+      },
+      "encoding": {
+        "x": {
+          "datum": "2022",  // Year 2022 for the vertical line
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      // Layer for the text comment about the drop in 2022 with a box
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -220,
+        "dy": -20,
+        "color": "black",
+        "fontSize": 13,
+        "lineBreak":"\n"
+      },
+      "encoding": {
+        "x": {
+          "datum": "2022",
+          "type": "nominal"
+        },
+        "y": {
+          "datum": 12000  // Position the text at a suitable y-coordinate
+        },
+        "text": {
+          "value": "At year 2022, the educational income\n drops for all states"
+        }
+      }
+    }
+  ]
 }
 ;
 
